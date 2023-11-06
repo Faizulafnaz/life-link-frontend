@@ -9,11 +9,13 @@ import UserList from '../UserList/UserList';
 import ChannelData from '../ChannelData/ChannelData';
 import { useParams } from 'react-router-dom';
 import Room from '../VideoCall/Room';
+import { AudioRoom } from '../AudioCall/AudioRoom';
+
 
 
 const Layout = () => {
 
-    const {RoomId} = useParams()
+    const {RoomId, aRoomId} = useParams()
 
 return (
     <LayoutStyles>
@@ -22,8 +24,8 @@ return (
         <ChannelInfo/>
         <ChannelList/>
         <UserInfo/>
-        {RoomId?<Room/>:<ChannelData/>}
-        {/* <UserList/> */}
+        {RoomId ? <Room /> : aRoomId ? <AudioRoom /> : <ChannelData />}
+        {/* <UserList/> */}  
     </LayoutStyles>
 )
 }

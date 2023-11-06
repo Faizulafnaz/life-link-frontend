@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import {PersonAdd, Settings} from 'styled-icons/material';
 import {Hashtag} from 'styled-icons/heroicons-outline';
-import {Video} from 'styled-icons/fluentui-system-filled';
+import {Video, Call} from 'styled-icons/fluentui-system-filled';
+
 
 
 export const Container = styled.div`
@@ -72,6 +73,11 @@ export const SettingsIcon = styled(Settings)`
     }
 `;
 export const VideoIcon = styled(Video)`
+    width:20px;
+    height:20px;
+    color: var(--senary);
+`;
+export const CallIcon = styled(Call)`
     width:20px;
     height:20px;
     color: var(--senary);

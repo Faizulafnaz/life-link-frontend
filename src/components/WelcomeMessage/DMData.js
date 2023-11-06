@@ -16,6 +16,8 @@ const DMData = () => {
   const [senderid, setSenderId] = useState(null);
   const [recipientid, setRecipientId] = useState(null)
   const [clientstate, setClientState] = useState('');
+  const [thread, setThread] = useState('');
+  const [req, setReq] = useState('');
   const [messages, setMessages] = useState([]);
 
   const {user} = useContext(AuthContext)
@@ -25,7 +27,11 @@ const DMData = () => {
   const navigate=useNavigate()
  
 
-
+  useEffect(()=>{
+    return ()=>{
+      console.log('chat closing function')
+    }
+  },[username, senderid, recipientid])
 
   const setUserProfileDetails = async () => {
     axios.get(`${baseUrl}/getuserdetails/${username}`).then((response) => {
@@ -96,11 +102,34 @@ useEffect(()=>{
   }
   }
 
+  const getReq = ()=>{
+    axios.get(`${baseUrl}/message-request/${user.user_id}/${username}`).then((response) => {
+      if (response.status == 200) {
+          setReq(response.data[0])
+
+      }
+  })
+  }
+
+  const handleReq = () =>{
+    axios.patch(`${baseUrl}/accept_request/${req.id}/`, {'is_accepted':true}).then((response) => {
+      if (response.status == 200) {
+          setReq(response.data)
+      }
+  })
+  }
+
 
   useEffect(() => {
     setSenderId(user.user_id)
     setRecipientId(username)
+    let thread_name = user.user_id > username ? `${user.user_id}_${username}` : `${username}_${user.user_id}`
+    setThread(thread_name)
+    getReq()
+    
   }, [username])
+
+  
 
 
 
@@ -112,6 +141,7 @@ useEffect(()=>{
     }
   }, [senderid, recipientid, username])
 
+  
 
 
   const onButtonClicked = () => {
@@ -134,12 +164,14 @@ useEffect(()=>{
   const chatContainerRef = useRef();
   useEffect(() => {
     // Scroll to the bottom of the chat container
-    chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    if(req.is_accepted || messages[0]?.sender_username === senderdetails.username){chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight}
+    
   });
 
 
   return (
     <Container>
+      {req.is_accepted || messages[0]?.sender_username === senderdetails.username || messages?.length === 0 ?
         <Messages  ref={chatContainerRef}>
         {console.log('flajflafla',messages)}
         {/* {
@@ -155,7 +187,7 @@ useEffect(()=>{
             
           })
           } */}
-          {
+          {  
           messages.map((message) => {
       
             if (message.sender_username === senderdetails.username) {
@@ -182,10 +214,23 @@ useEffect(()=>{
                 />
               );
             }
-          })
+          }) 
         }
 
         </Messages>
+
+        :
+        <div className='test p-3' style={{display:"flex", justifyContent:'center'}}> 
+        <div className="card w-96 bg-neutral text-neutral-content">
+          <div className="card-body items-center text-center">
+            <h2 className="card-title">You have a message request!</h2>
+            <p>do you want to accept</p>
+            <div className="card-actions justify-end">
+              <button className="btn btn-primary" onClick={handleReq}>Accept</button>
+            </div>
+          </div>
+        </div>
+        </div>}
         <InputWrapper>
             <Input type='text' placeholder='type here' ref={messageRef}/>
             

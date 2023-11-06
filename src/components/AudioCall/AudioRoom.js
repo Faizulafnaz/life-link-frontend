@@ -3,20 +3,20 @@ import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import { useParams } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext';
 
-const Room = () => {
-  const { RoomId } = useParams();
+export const AudioRoom = () => {
+const { aRoomId } = useParams();
   const { user } = useContext(AuthContext);
   const zpRef = useRef(null);
-  const meetingContainerRef = useRef(null);
+  const audioMeetingContainerRef = useRef(null);
 
   useEffect(() => {
     const initializeZego = async () => {
-      const appID = 436116211;
-      const serverSecret = '7f824259038083d08c67ab134d51e78c';
+      const appID = 1750612989;
+      const serverSecret = '7152003dd6eae010012588591e89771c';
       const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
         appID,
         serverSecret,
-        RoomId,
+        aRoomId,
         Date.now().toString(),
         user.username
       );
@@ -24,11 +24,15 @@ const Room = () => {
       zpRef.current = ZegoUIKitPrebuilt.create(kitToken);
 
       zpRef.current.joinRoom({
-        container: meetingContainerRef.current,
+        container: audioMeetingContainerRef.current,
         scenario: {
-          mode: ZegoUIKitPrebuilt.VideoConference,
+          mode: ZegoUIKitPrebuilt.GroupCall,
         },
         showPreJoinView: false,
+        turnOnCameraWhenJoining: false,
+        showTurnOffRemoteCameraButton: false,
+        showMyCameraToggleButton: false,
+        showScreenSharingButton: false,
       });
     };
 
@@ -39,15 +43,13 @@ const Room = () => {
       zpRef.current?.destroy();
       console.log('hangup function');
     };
-  }, [RoomId, user.username]);
+  }, [aRoomId, user.username]);
 
   return (
     <div
-      className="myCallContainer"
-      ref={meetingContainerRef}
-      style={{ width: '79.5vw', height: '85vh', marginTop: '30px' }}
+    className="myAudioCallContainer"
+    ref={audioMeetingContainerRef}
+    style={{ width: '79.5vw', height: '85vh', marginTop: '30px' }}
     ></div>
-  );
-};
-
-export default Room;
+  )
+}

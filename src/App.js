@@ -9,6 +9,7 @@ import DM from './pages/DM';
 import ProfileModal from './components/ProfileModal/ProfileModal';
 import ServerModal from './components/ServerModal/ServerModal';
 import { SearcModal } from './components/SearchModal/SearcModal';
+import UserDetailsModal from './components/ProfileModal/UserDetailsModal';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route  path="/group/:group" element={<Home />} />
             <Route  path="/group/:group/:channel" element={<Home />} />
             <Route  path="/group/:group/room/:RoomId" element={<Home />} />
+            <Route  path="/group/:group/audio_room/:aRoomId" element={<Home />} />
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
             <Route path="/varify" element={<Otp/>} />
@@ -29,6 +31,7 @@ function App() {
        <ProfileModal />
        <ServerModal />
        <SearcModal />
+       <UserDetailsModal />
     </div>
   );
 }
