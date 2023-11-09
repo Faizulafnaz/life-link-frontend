@@ -62,7 +62,7 @@ export const AuthProvider = ({children}) => {
     let varify_via_otp = async (e) =>{
         e.preventDefault()
         let response = await fetch(`${baseUrl}/varify/`, {
-            method : "POST",
+            method : "PATCH",
             headers : {
                 'Content-Type' : 'application/json'
             },

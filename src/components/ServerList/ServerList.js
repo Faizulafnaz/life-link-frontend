@@ -36,9 +36,10 @@ const ServerList = () => {
         { groups?.map((group)=>{
           return(
             <Link to={`/group/${group.id}`}>
-          <div className="avatar p-2" style={{ cursor: 'pointer' }}>
+          <div className="avatar p-2" style={{ cursor: 'pointer', position:'relative' }}>
           <div className="w-14 rounded-full">
             <img src={group.profile_picture? `${group.profile_picture}` : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"} />
+            {/* <div className="ml-8" style={{position : 'absolute', bottom:'7px'}}><div className="badge badge-primary badge-sm" >1</div></div> */}
           </div>
         </div>
         </Link>)

@@ -34,7 +34,7 @@ const DmList = () => {
 }
 
 const getUser = async ()=>{
-  let response = await fetch(`http://127.0.0.1:8000/api/chat-list/${user?.user_id}/`, {
+  let response = await fetch(`${baseUrl}/chat-list/${user?.user_id}/`, {
       method:'GET',
       headers:{
         'Content-Type':'application/json',
@@ -57,6 +57,8 @@ const getUser = async ()=>{
   }, [])
 
 
+  
+
   const navigate = useNavigate()
   return (
     
@@ -69,8 +71,23 @@ const getUser = async ()=>{
         <br></br>
         { users?.map((usr) => {
           return(
-            <Link to={`/dm/${usr.id}`}>
-          <UserRow nickname={usr.username} profile_pic={usr.profile_picture} ></UserRow>
+            <Link to={`/dm/${usr.id}`} onClick={async ()=>{
+              let formData = new FormData();
+              formData.append('user_id', user.user_id);
+              formData.append('sender_id', usr.id);
+              console.log(usr.id,'fdsfds', user.id)
+              const response = await fetch(`${baseUrl}/message-update/`, {
+                method: 'POST',
+                body:formData,
+            });
+    
+            if (response.ok) {
+              getUser()
+            } else {
+                alert('somthing went wrong');
+            }
+            }}>
+          <UserRow nickname={usr.username} profile_pic={usr.profile_picture} unread={usr.unread} id={usr.id}></UserRow>
           </Link>
           )
         })}
