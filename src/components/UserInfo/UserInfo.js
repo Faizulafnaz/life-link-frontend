@@ -28,7 +28,7 @@ const UserInfo = () =>{
         <Profile>
         <div className="avatar p-2">
             <div className="w-8 rounded-full">
-            <img src={userDetails?.profile_picture ? `${MediaUrl}${userDetails.profile_picture}` : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"} />
+            <img src={userDetails?.profile_picture ? `${userDetails.profile_picture}` : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"} />
             </div>
         </div>
             <UserData>

@@ -26,7 +26,7 @@ const ChannelMessage = ({author, date, content,hasMention, isBot, profile_pictur
         </Message>
         <div className="avatar p-2">
             <div className="w-8 rounded-full">
-            <img src={profile_picture ? `${MediaUrl}${profile_picture}` : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"} />
+            <img src={profile_picture ? `${profile_picture}` : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"} />
             </div>
         </div>
     </Container>
@@ -38,7 +38,7 @@ const ChannelMessage = ({author, date, content,hasMention, isBot, profile_pictur
         modal.showModal();
         modal.setAttribute('data-user-id', id); }} style={{cursor:'pointer'}}>
             <div className="w-8 rounded-full">
-            <img src={profile_picture ? `${MediaUrl}${profile_picture}` : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"} />
+            <img src={profile_picture ? `${profile_picture}` : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"} />
             </div>
         </div>
           <Message>
@@ -53,7 +53,7 @@ const ChannelMessage = ({author, date, content,hasMention, isBot, profile_pictur
         
         <dialog id={`user_details_modal${id}`} className="modal modal-bottom sm:modal-middle">
             <div className="modal-box">
-            <figure><img src={profile_picture ? `${MediaUrl}${profile_picture}` : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"} alt="Shoes" /></figure>
+            <figure><img src={profile_picture ? `${profile_picture}` : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{author}</h2> 
               </div>
