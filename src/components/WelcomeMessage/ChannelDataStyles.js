@@ -65,7 +65,7 @@ export const InputIcon = styled(AlternateEmail)`
 export const SendIcon = styled(Send)`
     width:24px;
     height:24px;
-    left:1125px;
+    float:right;
     color:var(--gray);
     cursor:pointer;
 `; 
