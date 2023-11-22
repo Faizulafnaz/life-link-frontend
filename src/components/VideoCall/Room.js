@@ -11,8 +11,8 @@ const Room = () => {
 
   useEffect(() => {
     const initializeZego = async () => {
-      const appID = 436116211; 
-      const serverSecret = '7f824259038083d08c67ab134d51e78c';
+      const appID = 1705439623; 
+      const serverSecret = '52bc5439b5fc3d3608d88132438d74c3';
       const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
         appID,
         serverSecret,
