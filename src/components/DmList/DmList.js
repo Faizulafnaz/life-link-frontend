@@ -67,7 +67,7 @@ const getUser = async ()=>{
             <span>Chats</span>
             <AddCategoryIcon/>
         </Category>
-        <input type="text" onChange={(e)=>searchUser(e.target.value)} placeholder="Type here" className="input input-bordered input-sm w-full max-w-xs" />
+        <input type="text" onChange={(e)=>searchUser(e.target.value)} placeholder="Search for new friends" className="input input-bordered input-sm w-full max-w-xs" />
         <br></br>
         { users?.map((usr) => {
           return(

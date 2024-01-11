@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode';
 import { baseUrl } from "../congifure/urls";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext()
 
@@ -26,13 +27,24 @@ export const AuthProvider = ({children}) => {
         })
         let data = await response.json()
         if (response.status === 200){
+            
+            if (jwt_decode(data.access)?.is_varified){
+                setAuthTokens(data)
+                setUser(jwt_decode(data.access))
+                localStorage.setItem('authTokens', JSON.stringify(data))
+                navigate('/')
+            }else{
+                console.log(jwt_decode(data.access));
+                toast.error("Account not varified !", {
+                    position: toast.POSITION.TOP_RIGHT,
+                  });
+            }
 
-            setAuthTokens(data)
-            setUser(jwt_decode(data.access))
-            localStorage.setItem('authTokens', JSON.stringify(data))
-            navigate('/')
+            
         }else{
-            alert('Something went wrong!')
+            toast.error("Invalid credentials !", {
+                position: toast.POSITION.TOP_RIGHT,
+              });
         }
     }
 
@@ -40,7 +52,9 @@ export const AuthProvider = ({children}) => {
     let signup = async (e)=>{
         e.preventDefault()
         if (e.target.password.value !== e.target.confirmPassword.value){
-            return alert('password do not match')
+            return toast.error("Password do no match", {
+                position: toast.POSITION.TOP_RIGHT,
+              });
         }
         let response = await fetch(`${baseUrl}/register/`, {
             method : "POST",
@@ -55,7 +69,9 @@ export const AuthProvider = ({children}) => {
         if (response.status === 200){
             navigate('/varify', { state: { email: e.target.email.value} })
         }else{
-            alert('somethingwrong')
+            toast.error("Account creation faild!", {
+                position: toast.POSITION.TOP_RIGHT,
+              });
         }
     }
 
@@ -70,8 +86,14 @@ export const AuthProvider = ({children}) => {
         })
         let data = await response.json()
         if (response.status === 200){
-            alert('account varified')
+            toast.success("Account varified !", {
+                position: toast.POSITION.TOP_RIGHT,
+              });
             navigate('/login')
+        }else if (response.status === 400){
+            toast.error("Invalid OTP!", {
+                position: toast.POSITION.TOP_RIGHT,
+              });
         }
     }
 

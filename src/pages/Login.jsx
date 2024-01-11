@@ -14,14 +14,17 @@ const Login = () => {
   },[])
 
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+  <div className="flex min-h-screen  flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-[#2f3136]">
     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
       {/* <img
         className="mx-auto h-10 w-auto"
         // src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
         // alt="Your Company"
       /> */}
-      <h2 className="mt-10 text-center text-white text-2xl font-bold leading-9 tracking-tight text-gray-900">
+      <h2 className="mt-10 text-center text-white text-2xl font-bold leading-9">
+        Life Link
+      </h2>
+      <h2 className="mt-5 text-center text-white text-2xl font-bold leading-9 tracking-tight text-gray-900">
         Sign in to your account
       </h2>
     </div>
@@ -29,7 +32,7 @@ const Login = () => {
     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form className="space-y-6" onSubmit={loginUser} method="POST">
         <div>
-          <label htmlFor="username" className="block text-sm font-medium text-white-900 leading-6">
+          <label htmlFor="username" className="block text-sm font-medium text-white leading-6">
             Username
           </label>
           <div className="mt-2">
@@ -39,14 +42,14 @@ const Login = () => {
               type="text"
               autoComplete="username"
               required
-              className="block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-white-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 bg-white py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
 
         <div>
           <div className="flex items-center justify-between">
-            <label htmlFor="password" className="block text-sm text-white-900 font-medium leading-6">
+            <label htmlFor="password" className="block text-sm text-white font-medium leading-6">
               Password
             </label>
             <div className="text-sm">
@@ -62,7 +65,7 @@ const Login = () => {
               type="password"
               autoComplete="current-password"
               required
-              className="block w-full rounded-md text-white border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-white-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md text-gray-900 border-0 bg-white py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-white-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
           </div>
         </div>

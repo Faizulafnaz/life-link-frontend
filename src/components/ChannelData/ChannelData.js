@@ -25,6 +25,7 @@ const ChannelData = () => {
         }
     })
   }
+  
   useEffect(()=>{
     setSenderProfile()
   

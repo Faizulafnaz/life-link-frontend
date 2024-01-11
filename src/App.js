@@ -10,6 +10,8 @@ import ProfileModal from './components/ProfileModal/ProfileModal';
 import ServerModal from './components/ServerModal/ServerModal';
 import { SearcModal } from './components/SearchModal/SearcModal';
 import UserDetailsModal from './components/ProfileModal/UserDetailsModal';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
        <ServerModal />
        <SearcModal />
        <UserDetailsModal />
+       <ToastContainer />
     </div>
   );
 }
